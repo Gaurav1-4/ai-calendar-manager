@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { GroqAdapter } from '@/core/adapters/GroqAdapter';
+import { GeminiAdapter } from '@/core/adapters/GeminiAdapter';
 import { LocalJsonRepository } from '@/core/adapters/LocalJsonRepository';
 import { ProcessChatCommand } from '@/core/use-cases/ProcessChatCommand';
 
@@ -12,7 +12,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Message is required' }, { status: 400 });
         }
 
-        const aiProvider = new GroqAdapter();
+        const aiProvider = new GeminiAdapter();
         const dbRepo = new LocalJsonRepository();
         const useCase = new ProcessChatCommand(aiProvider, dbRepo);
 
